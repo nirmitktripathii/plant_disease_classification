@@ -1,0 +1,85 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/plant_disease_classification/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 8d504e32304c164b30e9e5a67575da20
+      size: 738
+    - path: src/plant_disease_classification/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: b1a7bc377a6de15513720a156587a003
+      size: 955
+    outs:
+    - path: data/data_ingestion/PlantVillage
+      hash: md5
+      md5: fe176bed0c0c37b250ebaa49a125d8fc.dir
+      size: 342230723
+      nfiles: 20639
+  prepare_base_model:
+    cmd: python src/plant_disease_classification/pipeline/stage_02_prepare_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 8d504e32304c164b30e9e5a67575da20
+      size: 738
+    - path: src/plant_disease_classification/pipeline/stage_02_prepare_base_model.py
+      hash: md5
+      md5: cef2381f16775f180f9c24adae7fc4af
+      size: 1036
+    params:
+      params.yaml:
+        CLASSES: 15
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.01
+        WEIGHTS: imagenet
+    outs:
+    - path: data/prepare_base_model
+      hash: md5
+      md5: a10e504cec6d1c46da80c460d5137b11.dir
+      size: 119363824
+      nfiles: 2
+  training:
+    cmd: python src/plant_disease_classification/pipeline/stage_03_training.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 8d504e32304c164b30e9e5a67575da20
+      size: 738
+    - path: data/data_ingestion/PlantVillage
+      hash: md5
+      md5: fe176bed0c0c37b250ebaa49a125d8fc.dir
+      size: 342230723
+      nfiles: 20639
+    - path: data/prepare_base_model
+      hash: md5
+      md5: a10e504cec6d1c46da80c460d5137b11.dir
+      size: 119363824
+      nfiles: 2
+    - path: src/plant_disease_classification/components/prepare_callbacks.py
+      hash: md5
+      md5: 75b36f6140427c79147a84ff6fcd25f2
+      size: 1026
+    - path: src/plant_disease_classification/pipeline/stage_03_training.py
+      hash: md5
+      md5: 70102489cfa94336c6e4ede7ed1a41f0
+      size: 1326
+    params:
+      params.yaml:
+        AUGMENTATION: true
+        BATCH_SIZE: 32
+        EPOCHS: 1
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: data/training/model.h5
+      hash: md5
+      md5: f8df6fc4386d09e65a7c68a7db83b830
+      size: 61949872
