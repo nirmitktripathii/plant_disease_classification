@@ -73,7 +73,7 @@ stages:
       params.yaml:
         AUGMENTATION: true
         BATCH_SIZE: 32
-        EPOCHS: 1
+        EPOCHS: 15
         IMAGE_SIZE:
         - 224
         - 224
@@ -81,5 +81,37 @@ stages:
     outs:
     - path: data/training/model.h5
       hash: md5
-      md5: f8df6fc4386d09e65a7c68a7db83b830
-      size: 61949872
+      md5: 6ee30227aab8b8c52585dcce331baa92
+      size: 63454720
+  evaluation:
+    cmd: python src/plant_disease_classification/pipeline/stage_04_evaluation.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 8d504e32304c164b30e9e5a67575da20
+      size: 738
+    - path: data/data_ingestion/PlantVillage
+      hash: md5
+      md5: fe176bed0c0c37b250ebaa49a125d8fc.dir
+      size: 342230723
+      nfiles: 20639
+    - path: data/training/model.h5
+      hash: md5
+      md5: 6ee30227aab8b8c52585dcce331baa92
+      size: 63454720
+    - path: src/plant_disease_classification/pipeline/stage_04_evaluation.py
+      hash: md5
+      md5: d334ab9b4226387e71c10ae9aae9d322
+      size: 928
+    params:
+      params.yaml:
+        BATCH_SIZE: 32
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: 0ff78614500bedab3f3bc4a93b8a1871
+      size: 74
