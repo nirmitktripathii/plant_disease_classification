@@ -2,7 +2,7 @@
 
 ### End-to-End implementation of a Plant Disease Classification model using CNN
 
-# Chicken-Disease-Classification--Project
+# Plant-Disease-Classification--Project
 
 ## Workflows
 
@@ -28,28 +28,28 @@ https://github.com/nirmitktripathii/plant_disease_classification
 
 ### STEP 01- Create a conda environment after opening the repository
 
-```bash
-conda create -n cnncls python=3.8 -y
+```terminal
+python venv create plant_disease python=3.9.5 -y
 ```
 
-```bash
-conda activate cnncls
+```terminal
+cd ./plant_diseae/Script/activate cnncls
 ```
 
 ### STEP 02- install the requirements
 
-```bash
+```terminal
 pip install -r requirements.txt
 ```
 
-```bash
+```terminal
 # Finally run the following command
 python app.py
 ```
 
 Now,
 
-```bash
+```terminal
 open up you local host and port
 ```
 
