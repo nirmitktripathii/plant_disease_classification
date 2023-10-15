@@ -1,8 +1,11 @@
 artifacts_root: data
 
 data_ingestion:
+  flag: download
   root_dir: data/data_ingestion
   source_URL: https://github.com/nirmitktripathii/plant_disease_classification/raw/main/data.zip
+  source_dir: E:/Plant_disease_data
+  destination_dir: data/data_ingestion/PlantVillage
   local_data_file: data/data_ingestion/data.zip
   unzip_dir: data/data_ingestion
 

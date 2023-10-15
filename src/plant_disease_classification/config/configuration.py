@@ -29,10 +29,13 @@ class ConfigurationManager:
         create_directories([config.root_dir])
 
         data_ingestion_config = DataIngestionConfig(
+            flag =config.flag,
             root_dir=config.root_dir,
             source_URL=config.source_URL,
             local_data_file=config.local_data_file,
-            unzip_dir=config.unzip_dir 
+            unzip_dir=config.unzip_dir,
+            source_dir=config.source_dir,
+            destination_dir=config.destination_dir
         )
 
         return data_ingestion_config

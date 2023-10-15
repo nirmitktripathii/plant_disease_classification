@@ -13,9 +13,13 @@ class DataIngestionTrainingPipeline:
         config = ConfigurationManager()
         data_ingestion_config = config.get_data_ingestion_config()
         data_ingestion = DataIngestion(config=data_ingestion_config)
-        data_ingestion.download_file()
-        data_ingestion.extract_zip_file()
-
+        if data_ingestion_config.flag == "download":
+            logger.info(f"Downloading from {data_ingestion_config.source_URL}")
+            data_ingestion.download_file()
+            data_ingestion.extract_zip_file()
+        elif data_ingestion_config.flag == "copy":
+            logger.info(f"Copying from {data_ingestion_config.source_dir} to {data_ingestion_config.unzip_dir}")
+            data_ingestion.copy_dataset()
 
 
 
