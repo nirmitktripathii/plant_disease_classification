@@ -1,6 +1,7 @@
 import os
 import urllib.request as request
 import zipfile
+import shutil
 from plant_disease_classification import logger
 from plant_disease_classification.utils.common import get_size
 from plant_disease_classification.entity.config_entity import DataIngestionConfig
@@ -38,5 +39,13 @@ class DataIngestion:
 
         os.remove(self.config.local_data_file)
 
-    import os
+    def copy_dataset(self):
+        destination_dir = self.config.destination_dir
+        if not os.path.exists(destination_dir):
+            shutil.copytree(self.config.source_dir, destination_dir)
+            logger.info(f"{self.config.source_dir} copied!")         
+        else:
+            logger.info(f"File already exists of size: {get_size(Path(self.config.unzip_dir))}")  
+
+
 

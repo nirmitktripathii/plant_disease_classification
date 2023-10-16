@@ -3,6 +3,9 @@ IMAGE_SIZE: [224, 224, 3] # as per VGG 16 model
 BATCH_SIZE: 32
 INCLUDE_TOP: False
 EPOCHS: 1
-CLASSES: 15
+CLASSES: 8
 WEIGHTS: imagenet
 LEARNING_RATE: 0.01
+LOSS: "categorical_crossentropy"
+METRIC: ["accuracy"]
+OPTIMIZER: "adam"

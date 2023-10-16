@@ -8,7 +8,7 @@ __version__ = "0.0.0"
 
 REPO_NAME = "plant_disease_classification"
 AUTHOR_USER_NAME = "nirmitktripathii"
-SRC_REPO = "plant_disease_classificationr"
+SRC_REPO = "plant_disease_classification"
 AUTHOR_EMAIL = "nktthegreat@gmail.com"
 
 

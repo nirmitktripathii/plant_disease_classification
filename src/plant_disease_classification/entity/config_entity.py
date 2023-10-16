@@ -4,10 +4,13 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class DataIngestionConfig:
+    flag: str 
     root_dir: Path
     source_URL: str
     local_data_file: Path
     unzip_dir: Path
+    source_dir: Path 
+    destination_dir: Path
 
 
 @dataclass(frozen=True)
@@ -41,6 +44,11 @@ class TrainingConfig:
     params_batch_size: int
     params_is_augmentation: bool
     params_image_size: list
+    params_optimizer: str
+    params_learning_rate: float
+    params_loss: str
+    params_metric: list
+
 
 
 
